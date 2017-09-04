@@ -9,11 +9,16 @@ class AboutHandler(tornado.web.RequestHandler):
     def get(self):
 	self.render("pages-about-1.html", title="My title")
 
+class DiscoHandler(tornado.web.RequestHandler):
+    def get(self):
+	self.render("portfolio-promo.html", title="My title")
+
 def make_app():
     settings = {'debug': True }
     handlers = [
 		(r"/", MainHandler),
 		(r"/pages-about-1.html", AboutHandler),
+		(r"/portfolio-promo.html", DiscoHandler),
 		(r"/mp-index-18.html", MainHandler),
 		(r'/(.*)', tornado.web.StaticFileHandler, {'path': 'static'}),
     ]
