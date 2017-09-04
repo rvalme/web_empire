@@ -3,23 +3,28 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("mp-index-18.html", title="My title")
+        self.render("index.html", title="My title")
 
 class AboutHandler(tornado.web.RequestHandler):
     def get(self):
-	self.render("pages-about-1.html", title="My title")
+	self.render("about.html", title="My title")
 
 class DiscoHandler(tornado.web.RequestHandler):
     def get(self):
-	self.render("portfolio-promo.html", title="My title")
+	self.render("discography.html", title="My title")
+
+class ShowHandler(tornado.web.RequestHandler):
+    def get(self):
+	self.render("shows.html", title="My title")
 
 def make_app():
     settings = {'debug': True }
     handlers = [
 		(r"/", MainHandler),
-		(r"/pages-about-1.html", AboutHandler),
-		(r"/portfolio-promo.html", DiscoHandler),
-		(r"/mp-index-18.html", MainHandler),
+		(r"/about.html", AboutHandler),
+		(r"/discography.html", DiscoHandler),
+		(r"/shows.html", ShowHandler),
+		(r"/index.html", MainHandler),
 		(r'/(.*)', tornado.web.StaticFileHandler, {'path': 'static'}),
     ]
     return tornado.web.Application(handlers, **settings)
