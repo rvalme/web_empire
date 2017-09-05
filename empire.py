@@ -17,6 +17,9 @@ class ShowHandler(tornado.web.RequestHandler):
     def get(self):
 	self.render("shows.html", title="My title")
 
+class ContactHandler(tornado.web.RequestHandler):
+    def get(self):
+	self.render("contact.html", title="My title")
 def make_app():
     settings = {'debug': True }
     handlers = [
@@ -25,6 +28,7 @@ def make_app():
 		(r"/discography.html", DiscoHandler),
 		(r"/shows.html", ShowHandler),
 		(r"/index.html", MainHandler),
+		(r"/contact.html", ContactHandler),
 		(r'/(.*)', tornado.web.StaticFileHandler, {'path': 'static'}),
     ]
     return tornado.web.Application(handlers, **settings)
